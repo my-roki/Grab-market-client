@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import "./index.css";
 
@@ -23,18 +24,13 @@ function MainPage() {
 
   return (
     <div>
-      <div id="header">
-        <div id="header-area">
-          <img src="./images/icons/logo.png" alt="" />
-        </div>
-      </div>
-      <div id="body">
-        <img src="./images/banners/banner1.png" alt="" />
-        <h1>판매되는 상품</h1>
-        <div id="product-list">
-          {products.map(function (product, index) {
-            return (
-              <div className="product-card" key={index}>
+      <img src="./images/banners/banner1.png" alt="" />
+      <h1>판매되는 상품</h1>
+      <div id="product-list">
+        {products.map(function (product, index) {
+          return (
+            <div className="product-card" key={index}>
+              <Link className="product-link" to={`/products/${product.id}`}>
                 <div>
                   <img
                     className="product-image"
@@ -54,12 +50,11 @@ function MainPage() {
                     <span>{product.seller}</span>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              </Link>
+            </div>
+          );
+        })}
       </div>
-      <div id="footer"></div>
     </div>
   );
 }
