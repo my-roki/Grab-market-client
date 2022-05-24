@@ -33,7 +33,7 @@ function ProductPage() {
         <img src="/images/icons/avatar.png" alt=""></img>
         <span>{product.seller}</span>
       </div>
-      <div id="content-box">
+      <div id="contents-box">
         <div id="name">{product.name}</div>
         <div id="price">{product.price}</div>
         <div id="created-at">2020년 12월 12일</div>

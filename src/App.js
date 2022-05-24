@@ -4,7 +4,7 @@ import MainPageComponent from "./main";
 import ProductPageComponent from "./product";
 import UploadtPageComponent from "./upload";
 
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import "./App.css";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
