@@ -48,7 +48,9 @@ function UploadPage() {
           rules={[{ required: true, message: "상품 가격을 입력해주세요." }]}
         >
           <InputNumber
-            defaultValue={0}
+            defaultValue={1000}
+            min={1000}
+            step={10}
             className="upload__price"
             size="large"
           ></InputNumber>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import dayjs from "dayjs";
 
 import "./index.css";
 
@@ -9,11 +10,9 @@ function ProductPage() {
   const [product, setProduct] = useState();
   useEffect(() => {
     axios
-      .get(
-        `https://75bb18b8-d369-4dc7-8bb0-956cec12a9e2.mock.pstmn.io/products/${id}`,
-      )
+      .get(`http://localhost:8080/products/${id}`)
       .then((result) => {
-        setProduct(result.data);
+        setProduct(result.data.product);
       })
       .catch(function (error) {
         console.error("ERROR : ", error);
@@ -35,8 +34,10 @@ function ProductPage() {
       </div>
       <div id="contents-box">
         <div id="name">{product.name}</div>
-        <div id="price">{product.price}</div>
-        <div id="created-at">2020년 12월 12일</div>
+        <div id="price">{product.price} 원</div>
+        <div id="created-at">
+          {dayjs(product.createdAt).format("YYYY년 MM월 DD일")}
+        </div>
         <div id="description">{product.description}</div>
       </div>
     </div>
