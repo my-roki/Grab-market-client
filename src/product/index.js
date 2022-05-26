@@ -4,29 +4,30 @@ import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 
 import "./index.css";
+import { API_URL } from "../config/constant.js";
 
 function ProductPage() {
   const { id } = useParams();
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/products/${id}`)
+      .get(`${API_URL}/products/${id}`)
       .then((result) => {
         setProduct(result.data.product);
       })
-      .catch(function (error) {
-        console.error("ERROR : ", error);
+      .catch(function (err) {
+        console.error("ERROR : ", err);
       });
-  });
+  }, []);
 
-  if (product === undefined) {
+  if (product === null) {
     return <h1>상품 정보를 받고있습니다...</h1>;
   }
 
   return (
     <div>
       <div id="image-box">
-        <img src={product.imageUrl} alt=""></img>
+        <img src={`${API_URL}/${product.imageUrl}`} alt=""></img>
       </div>
       <div id="profile-box">
         <img src="/images/icons/avatar.png" alt=""></img>
@@ -38,7 +39,7 @@ function ProductPage() {
         <div id="created-at">
           {dayjs(product.createdAt).format("YYYY년 MM월 DD일")}
         </div>
-        <div id="description">{product.description}</div>
+        <pre id="description">{product.description}</pre>
       </div>
     </div>
   );
